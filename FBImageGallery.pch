@@ -1,0 +1,19 @@
+//
+//  FBImageGallery.pch
+//  FBImageGallery
+//
+//  Created by gh on 4/13/17.
+//  Copyright © 2017 Slack. All rights reserved.
+//
+
+#ifndef FBImageGallery_pch
+#define FBImageGallery_pch
+
+#import "AppDelegate.h"
+#import "Constants.h"
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* FBImageGallery_pch */
