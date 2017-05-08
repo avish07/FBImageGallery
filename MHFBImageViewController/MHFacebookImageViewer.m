@@ -544,6 +544,13 @@ static const CGFloat kMinImageScale = 1.0f;
 @synthesize initialIndex = _initialIndex;
 
 #pragma mark - TableView datasource
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(self.view.bounds.size.width, collectionView.frame.size.height);
+}
+
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -552,7 +559,6 @@ static const CGFloat kMinImageScale = 1.0f;
     // Just to retain the old version
     
    // return 7;
-    NSLog(@":%d", [self.imageDatasource numberImagesForImageViewer:self]);
     
     if(!self.imageDatasource) return 1;
     return [self.imageDatasource numberImagesForImageViewer:self];

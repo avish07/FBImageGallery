@@ -59,40 +59,43 @@
 
 #pragma mark - UICollectionView datasource and delegates
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(self.view.bounds.size.width, collectionView.frame.size.height);
+}
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return imgsArr.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"ImageCollectionCell";
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    __weak UIImageView *img = (UIImageView *)[cell.contentView viewWithTag:1];
-    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [activity startAnimating];
-    [activity setCenter:img.center];
-    [activity setHidesWhenStopped:true];
-    [img addSubview:activity];
-    [img setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imgsArr[indexPath.row]]] placeholderImage:[UIImage imageNamed:@"default_propertyImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-        [activity stopAnimating];
-        [img setImage:image];
-        NSLog(@"success");
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
-        [activity stopAnimating];
-        NSLog(@"failure");
-    }];
-   
-    [img setupImageViewerWithDatasource:self initialIndex:indexPath.item onOpen:^{
+        static NSString *cellIdentifier = @"ImageCollectionCell";
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
         
-        // write code when image is opened
+        __weak UIImageView *img = (UIImageView *)[cell.contentView viewWithTag:1];
+        UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activity startAnimating];
+        [activity setFrame:CGRectMake(self.view.bounds.size.width/2 - activity.frame.size.width / 2, img.frame.origin.y + (collectionView.frame.size.height / 2), activity.frame.size.width, activity.frame.size.height)];
+        [activity setHidesWhenStopped:true];
+        [img addSubview:activity];
+        [img setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:imgsArr[indexPath.row]]] placeholderImage:[UIImage imageNamed:@"default_propertyImage"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+            [activity stopAnimating];
+            [img setImage:image];
+            NSLog(@"success");
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+            [activity stopAnimating];
+            NSLog(@"failure");
+        }];
         
-    } onClose:^{
-        // wirte code when image is closed
+        [img setupImageViewerWithDatasource:self initialIndex:indexPath.item onOpen:^{
+            
+            // write code when image is opened
+            
+        } onClose:^{
+            // wirte code when image is closed
+            
+        }];
         
-    }];
-    
-    return cell;
+        return cell;
 }
 
 

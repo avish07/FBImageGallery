@@ -10,7 +10,7 @@
 #import "MHFacebookImageViewer.h"
 #import "UIImageView+MHFacebookImageViewer.h"
 
-@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, MHFacebookImageViewerDatasource>{
+@interface ViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, MHFacebookImageViewerDatasource>{
     __weak IBOutlet UICollectionView *collectionObj;
 }
 
