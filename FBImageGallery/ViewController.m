@@ -25,7 +25,7 @@
     captionsArr = [[NSMutableArray alloc] init];
     
     
-    imgsArr = [@[@"https://static.pexels.com/photos/3247/nature-forest-industry-rails.jpg", @"https://static.pexels.com/photos/26750/pexels-photo-26750.jpg", @"https://static.pexels.com/photos/60006/spring-tree-flowers-meadow-60006.jpeg", @"https://static.pexels.com/photos/132982/pexels-photo-132982.jpeg", @"https://static.pexels.com/photos/145939/pexels-photo-145939.jpeg", @"https://static.pexels.com/photos/24491/pexels-photo-24491.jpg", @"https://static.pexels.com/photos/122429/leaf-nature-green-spring-122429.jpeg"] mutableCopy];
+    imgsArr = [@[@"https://www.gstatic.com/webp/gallery/1.jpg", @"https://www.gstatic.com/webp/gallery/2.jpg", @"https://www.gstatic.com/webp/gallery/3.jpg", @"https://www.gstatic.com/webp/gallery/4.jpg", @"https://www.gstatic.com/webp/gallery3/5.png"] mutableCopy];
     
     for (int i = 1; i <= 7; i++) {
         [captionsArr addObject:[NSString stringWithFormat:@"Image%d", i]];
